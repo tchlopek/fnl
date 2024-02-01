@@ -88,15 +88,15 @@ public:
     std::swap(static_cast<base_t&>(lhs), static_cast<base_t&>(rhs));
   }
 
-  void iter() & {
+  auto iter() & {
     return cppiter::iter(*this);
   }
 
-  void iter() const& {
+  auto iter() const& {
     return cppiter::iter(*this);
   }
 
-  void iter() && {
+  auto iter() && {
     return cppiter::iter(std::move(*this));
   }
 
