@@ -1,6 +1,7 @@
 #pragma once
 
-#include <cppiter/iter.hpp>
+#include <tsi/iter.hpp>
+#include <tsi/range/view_range.hpp>
 #include <vector>
 
 namespace fnl {
@@ -84,20 +85,20 @@ public:
     return lhs >= rhs;
   }
 
-  friend void swap(vec& lhs, vec& rhs) noexcept {
-    std::swap(static_cast<base_t&>(lhs), static_cast<base_t&>(rhs));
+  friend void swap(vec& lhs, vec& rhs) noexcept(noexcept(lhs.swap(rhs))) {
+    lhs.swap(rhs);
   }
 
   auto iter() & {
-    return cppiter::iter(*this);
+    return tsi::iter(tsi::rng::view_range{ begin(), end() });
   }
 
   auto iter() const& {
-    return cppiter::iter(*this);
+    return tsi::iter(tsi::rng::view_range{ cbegin(), cend() });
   }
 
   auto iter() && {
-    return cppiter::iter(std::move(*this));
+    return tsi::iter(std::move(*this));
   }
 
 private:

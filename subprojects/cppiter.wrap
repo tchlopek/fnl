@@ -1,6 +1,0 @@
-[wrap-git]
-url = https://github.com/tchlopek/cppiter.git
-revision = master
-
-[provide]
-dependency_names = cppiter
