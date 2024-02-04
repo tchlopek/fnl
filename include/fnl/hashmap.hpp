@@ -4,6 +4,8 @@
 #include <tsi/range/view_range.hpp>
 #include <unordered_map>
 
+#include "util/option_iter.hpp"
+
 namespace fnl {
 
 template<
@@ -29,8 +31,8 @@ public:
   using const_reference = typename base_t::const_reference;
   using pointer = typename base_t::pointer;
   using const_pointer = typename base_t::const_pointer;
-  using iterator = typename base_t::iterator;
-  using const_iterator = typename base_t::const_iterator;
+  using iterator = util::option_iter<typename base_t::iterator>;
+  using const_iterator = util::option_iter<typename base_t::const_iterator>;
   using local_iterator = typename base_t::local_iterator;
   using const_local_iterator = typename base_t::const_local_iterator;
   using node_type = typename base_t::node_type;
@@ -77,6 +79,16 @@ public:
 
   using base_t::hash_function;
   using base_t::key_eq;
+
+  iterator find(const key_t& k) {
+    auto it = base_t::find(k);
+    return it != base_t::end() ? iterator{ std::move(it) } : iterator{};
+  }
+
+  const_iterator find(const key_t& k) const {
+    auto it = base_t::find(k);
+    return it != base_t::end() ? const_iterator{ std::move(it) } : const_iterator{};
+  }
 
   bool contains(const key_t& key) const {
     return count(key) == 1;
