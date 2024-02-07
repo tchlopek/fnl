@@ -10,6 +10,10 @@ using namespace ::testing;
 
 using iter_t = std::vector<int>::iterator;
 
+TEST(OptionIterTest, ConvertsToFalseWhenConstructedFromNone) {
+    EXPECT_FALSE(option_iter<iter_t>{ none });
+}
+
 TEST(OptionIterTest, ConvertsToFalseOnDefaultCtor) {
     EXPECT_FALSE(option_iter<iter_t>{});
 }

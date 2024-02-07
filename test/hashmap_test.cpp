@@ -13,7 +13,7 @@ public:
       hp["asd"] = 2;
   }
 
-  auto sut() const {
+  const auto& sut() const {
     return hp;
   }
 

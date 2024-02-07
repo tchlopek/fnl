@@ -5,10 +5,13 @@
 
 namespace fnl::util {
 
+constexpr struct none_t{} none{};
+
 template<typename iter_t>
 class option_iter : public std::iterator_traits<iter_t> {
 public:
   option_iter() = default;
+  option_iter(none_t): option_iter{} {}
   explicit option_iter(iter_t&& it)
     : m_it{ std::move(it) }
   {}

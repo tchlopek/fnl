@@ -8,6 +8,7 @@ ut_deps = [
 
 src_test = [
   'main.cpp',
+  'find_test.cpp',
   'hashmap_test.cpp',
   'option_iter_test.cpp'
 ]
