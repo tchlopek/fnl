@@ -61,6 +61,10 @@ public:
   using base_t::resize;
   using base_t::swap;
 
+  vec(std::initializer_list<val_t> ilist, const alloc_t& a = alloc_t())
+    : base_t(ilist, a)
+  {}
+
   friend bool operator==(const vec& lhs, const vec& rhs) {
     return lhs == rhs;
   }
