@@ -1,6 +1,6 @@
 [wrap-git]
 url = https://github.com/tchlopek/tsi.git
-revision = master
+revision = 9bb6dadfd07922b4aade1bb04c4f83076d0ef91d
 
 [provide]
 dependency_names = tsi
